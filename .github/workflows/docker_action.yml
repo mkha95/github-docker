@@ -28,7 +28,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./docker
+          context: ./docker/arm64
           platforms: linux/arm64
           push: true
           tags: khamlichmoaad/ubuntu:manifest-arm64
@@ -62,7 +62,8 @@ jobs:
 
 
 
-  build:
+  build-manifest:
+    needs: [docker-amd64, docker-arm64]
 
     runs-on: ubuntu-latest
 
